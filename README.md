@@ -17,3 +17,8 @@ When built in war mode (run `./mvnw clean package -Pspring-traditional`), the WA
 uses the Tomcat server bundled with the Java Buildpack. If there is a Redis session
 whose name contains the substring `session-replication`, the buildpack will
 reconfigure Tomcat to use that service for session replication.
+
+## Note about building from source
+
+You must have a running Redis database on localhost at port 6379 for tests to
+work.
