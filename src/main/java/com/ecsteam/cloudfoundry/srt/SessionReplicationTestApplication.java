@@ -44,18 +44,17 @@ public class SessionReplicationTestApplication extends SpringBootServletInitiali
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(SessionReplicationTestApplication.class);
 	}
-	
+
+	/*
+	 * Taken from https://github.com/spring-projects/spring-session/issues/124. The PCF redis tile is secured, so the
+	 * CONFIG command is disabled. Used only in Spring Boot (JAR) deployment.
+	 */
 	@Bean
 	@ConditionalOnClass(name = "org.springframework.session.data.redis.config.ConfigureRedisAction")
 	public static ConfigureRedisAction configureRedisAction() {
 		return NO_OP;
 	}
 }
-
-/*
- * Taken from https://github.com/spring-projects/spring-session/issues/124. The PCF redis tile is secured, so the CONFIG
- * command is disabled. Used only in Spring Boot (JAR) deployment.
- */
 
 /**
  * Shows an incrementing counter with instance index. When a request is received, it kills the current JVM one second
